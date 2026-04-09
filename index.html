@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SoulMirror - 个人复盘工具</title>
+    <script>
+      // Fix for libraries trying to polyfill fetch in a read-only environment
+      (function() {
+        if (typeof window !== 'undefined' && window.fetch) {
+          try {
+            var nativeFetch = window.fetch;
+            Object.defineProperty(window, 'fetch', {
+              value: nativeFetch,
+              configurable: true,
+              writable: true,
+              enumerable: true
+            });
+          } catch (e) {
+            console.warn('Could not make fetch writable');
+          }
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
